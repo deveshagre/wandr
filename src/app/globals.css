@@ -1,26 +1,81 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --ink: #10110F;
+    --paper: #F1EBDD;
+    --acid: #D8F45A;
+    --muted: #AAA99F;
+    --dark-border: #262724;
+    --paper-border: #D8D2C3;
+  }
+
+  /* Strict editorial art direction: zero rounded corners */
+  *, *::before, *::after {
+    border-radius: 0px !important;
   }
 }
 
+@theme {
+  --color-ink: #10110F;
+  --color-paper: #F1EBDD;
+  --color-acid: #D8F45A;
+  --color-muted: #AAA99F;
+  --color-dark-border: #262724;
+  --color-paper-border: #D8D2C3;
+  --color-surface-dark: #171815;
+  --color-surface-darker: #0B0C0A;
+  --color-surface-paper: #EAE3D2;
+  --font-display: var(--font-bebas), "Oswald", sans-serif;
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-mono), monospace;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #10110F;
+  color: #F1EBDD;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Accessible reduced-motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Editorial custom scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #10110F;
+}
+::-webkit-scrollbar-thumb {
+  background: #262724;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D8F45A;
+}
+
+/* Leaflet dark custom styling matching BLR ink-black */
+.leaflet-container {
+  background: #10110F !important;
+  font-family: inherit !important;
+}
+.leaflet-popup-content-wrapper {
+  background: #171815 !important;
+  color: #F1EBDD !important;
+  border: 1px solid #262724 !important;
+  border-radius: 0px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.8) !important;
+}
+.leaflet-popup-tip {
+  background: #171815 !important;
 }
